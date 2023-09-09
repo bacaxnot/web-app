@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import containerQueries from "@tailwindcss/container-queries";
 
 const config: Config = {
   content: [
@@ -11,8 +12,11 @@ const config: Config = {
       width: {
         page: "min(100vw,56rem);",
       },
+      boxShadow: {
+        bottom: "0 2px 4px -4px rgba(0 0 0 / 0.1)",
+      },
     },
   },
-  plugins: [],
+  plugins: [containerQueries],
 };
 export default config;

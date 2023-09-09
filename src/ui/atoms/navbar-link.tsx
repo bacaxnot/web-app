@@ -1,20 +1,19 @@
-import { CustomFC } from "@bacaxnot/utils";
+import { CustomFC, cn } from "@bacaxnot/utils";
 import Link from "next/link";
 
 interface Props {
-  href?: string;
+  href: string;
 }
 
-const NavbarLink: CustomFC<"li", Props> = ({ href, ...props }) => {
+const NavbarLink: CustomFC<"a", Props> = ({ children, ...props }) => {
+  const styles = cn(
+    "@md/navbar:hover:border-white border border-transparent px-1.5 py-0.5 hover:cursor-pointer",
+    props.className,
+  );
   return (
-    <li {...props}>
-      <Link
-        href={href ?? "#"}
-        className="border border-transparent px-1.5 py-0.5 hover:cursor-pointer hover:border-white"
-      >
-        {props.children}
-      </Link>
-    </li>
+    <Link {...props} className={styles}>
+      {children}
+    </Link>
   );
 };
 
