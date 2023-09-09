@@ -4,7 +4,7 @@ const NavbarLogo = () => {
   return (
     <Link
       href="/"
-      className="border border-transparent px-1.5 text-3xl hover:border-white"
+      className="border border-transparent text-3xl hover:underline"
     >
       bacaxnot
     </Link>
