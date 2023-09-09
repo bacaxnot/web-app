@@ -1,3 +1,5 @@
+import { WorkInProgress } from "@/ui/templates";
+
 export default function Home() {
-  return <main>this is a main</main>;
+  return <WorkInProgress />;
 }

@@ -1,13 +1,14 @@
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
+import { Navbar } from "@/ui/organisms";
 
-const inter = Inter({ subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Bacaxnot",
-  description: "Some random description must be here",
+  description: "Supongo que esta es mi pagina web",
 };
 
 export default function RootLayout({
@@ -15,9 +16,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const classNames = cn(
+    "grid bg-black text-white [color-scheme:dark]",
+    robotoMono.className,
+  );
+
   return (
-    <html lang="en">
-      <body className={cn("bg-black text-white", inter.className)}>
+    <html lang="es">
+      <body className={classNames}>
+        <Navbar className="w-page justify-self-center" />
         {children}
       </body>
     </html>
