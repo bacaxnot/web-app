@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@bacaxnot/utils";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";

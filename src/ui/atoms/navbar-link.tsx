@@ -1,4 +1,4 @@
-import { CustomFC } from "@/lib/types";
+import { CustomFC } from "@bacaxnot/utils";
 import Link from "next/link";
 
 interface Props {

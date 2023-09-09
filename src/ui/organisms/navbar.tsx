@@ -1,5 +1,4 @@
-import { CustomFC } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { CustomFC, cn } from "@bacaxnot/utils";
 import { NavbarLink, NavbarLogo } from "../atoms";
 
 const Navbar: CustomFC<"header"> = ({ className, ...props }) => {
