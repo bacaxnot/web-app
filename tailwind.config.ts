@@ -12,6 +12,9 @@ const config: Config = {
       width: {
         page: "min(100vw,56rem);",
       },
+      padding: {
+        page: "1rem",
+      },
       boxShadow: {
         bottom: "0 2px 4px -4px rgba(0 0 0 / 0.1)",
       },

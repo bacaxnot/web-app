@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  display: grid;
+  height: 100dvh;
+  grid-template-rows: auto 1fr;
+}
+
+.blinking {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.blinking::after {
+  content: "";
+  width: 0.12em;
+  height: 1em;
+  background: white;
+  display: inline-block;
+  animation: cursor-blink 1s steps(2) infinite;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
