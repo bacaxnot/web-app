@@ -1,8 +1,8 @@
-import { ASCII_LOCK } from "@/lib/ascii-art";
+import { ASCII_LOCK_BIN } from "@/lib/ascii-art";
 import { CustomFC, cn } from "@bacaxnot/utils";
 
 const Designs = {
-  lock: ASCII_LOCK,
+  lock: ASCII_LOCK_BIN,
 };
 interface Props {
   design: keyof typeof Designs;
