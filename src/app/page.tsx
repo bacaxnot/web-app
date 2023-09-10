@@ -1,5 +1,5 @@
 import { WorkInProgress } from "@/ui/templates";
 
 export default function Home() {
-  return <WorkInProgress />;
+  return <WorkInProgress className="h-full" />;
 }

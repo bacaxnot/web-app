@@ -27,7 +27,7 @@ const NavbarLinkList: CustomFC<"ul"> = ({ children, ...props }) => {
 const NavbarLinks = () => {
   const linkListStyles = {
     mobile:
-      "absolute left-0 right-0 flex justify-end bg-black py-3 gap-1.5 transition-transform -translate-y-full -z-10 @md:hidden",
+      "absolute left-0 right-0 flex justify-end bg-black py-3 gap-1.5 transition-transform -translate-y-full -z-10 @md:hidden px-page",
     desktop: "hidden @md:flex gap-2",
   };
   const [isOpen, setIsOpen] = useState(false);

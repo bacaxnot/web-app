@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       width: {
-        page: "min(100vw,56rem);",
+        page: "min(100%,56rem);",
       },
       padding: {
         page: "1rem",

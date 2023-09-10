@@ -1,7 +1,7 @@
-import { cn } from "@bacaxnot/utils";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
+import { cn } from "@bacaxnot/utils";
 import { Navbar } from "@/ui/organisms";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={classNames}>
-        <Navbar className="w-page justify-self-center" />
-        {children}
+        <Navbar className="px-page w-page justify-self-center" />
+        <main className="px-page w-page justify-self-center">{children}</main>
       </body>
     </html>
   );

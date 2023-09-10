@@ -3,7 +3,7 @@ import { NavbarLogo } from "../atoms";
 import { NavbarLinks } from "../molecules";
 
 const Navbar: CustomFC<"header"> = ({ className, ...props }) => {
-  const classes = cn("navbar @container/navbar sticky grid", className);
+  const classes = cn("navbar @container/navbar sticky grid py-2", className);
 
   return (
     <header className={classes} {...props}>

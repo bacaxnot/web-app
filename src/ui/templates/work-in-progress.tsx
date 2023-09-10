@@ -1,13 +1,16 @@
+import { CustomFC, cn } from "@bacaxnot/utils";
 import React from "react";
 
-const WorkInProgress = () => {
+const WorkInProgress: CustomFC<"p"> = ({ className, ...props }) => {
+  const classes = cn(
+    "flex flex-col items-center justify-center break-words text-6xl",
+    className,
+  );
   return (
-    <main className="w-page justify-self-center">
-      <p className="flex h-full flex-col items-center justify-center break-words text-6xl">
-        <span>Work in</span>
-        <span className="blinking">progress</span>
-      </p>
-    </main>
+    <p {...props} className={classes}>
+      <span>Work in</span>
+      <span className="blinking">progress</span>
+    </p>
   );
 };
 
