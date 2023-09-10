@@ -9,4 +9,8 @@ export const ROUTES = {
   quien: {
     root: "/quien",
   },
+  admin: {
+    root: "/admin",
+    login: "/admin/security-breach",
+  },
 };
