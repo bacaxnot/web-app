@@ -13,5 +13,5 @@ export async function GET(req: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(reqUrl.origin, { status: 200 });
+  return NextResponse.redirect(`${reqUrl.origin}/admin`, { status: 301 });
 }
