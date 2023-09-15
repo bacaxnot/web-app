@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen:dbtypes": "npx supabase gen types typescript --project-id ehgwwzsrzlymozphrlyk > ./src/models/db.supabase.ts"
   },
   "dependencies": {
     "@bacaxnot/utils": "^0.2.1",
