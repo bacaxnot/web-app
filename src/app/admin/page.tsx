@@ -1,6 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { PostCreationForm } from "@/ui/templates";
 
 export default async function AdminPage() {
   const supabase = createServerComponentClient({ cookies });
@@ -29,22 +30,7 @@ export default async function AdminPage() {
 
   return (
     <section>
-      <form className="grid gap-4">
-        <label htmlFor="post-title" className="grid gap-2">
-          <span>título</span>
-          <input type="text" name="post-title" id="post-title" />
-        </label>
-        <label htmlFor="post-content" className="grid gap-2">
-          <span>contenido</span>
-          <textarea name="post-content" id="post-content" />
-        </label>
-        <button
-          type="button"
-          className="border border-transparent py-1.5 hover:border-white"
-        >
-          publicar
-        </button>
-      </form>
+      <PostCreationForm />
     </section>
   );
 }
