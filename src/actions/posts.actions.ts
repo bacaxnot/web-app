@@ -12,8 +12,7 @@ export async function createPostAction(data: FormData) {
     client: supabase,
     post: postInfo,
   });
-
-  console.log(createData, createError);
+  return { data: createData, error: createError };
 }
 
 function extractPostInfoFromForm(data: FormData) {

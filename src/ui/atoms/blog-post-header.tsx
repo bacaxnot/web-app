@@ -21,7 +21,6 @@ const BlogPostHeader = ({
       link: `/blog/${slug}`,
     },
   };
-  console.log(modeSwitcher.text.link);
 
   return (
     <section className="grid gap-4">
