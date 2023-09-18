@@ -1,5 +1,5 @@
 import { Post } from "@/models/posts";
-import { Disclaimer } from ".";
+import { Disclaimer, FormattedText } from ".";
 
 const BlogPostBody = ({ post }: { post: Post }) => {
   const { audio_url, content } = post;
@@ -15,7 +15,7 @@ const BlogPostBody = ({ post }: { post: Post }) => {
         </Disclaimer>
       </section>
       <section>
-        <p>{content}</p>
+        <FormattedText>{content}</FormattedText>
       </section>
     </section>
   );

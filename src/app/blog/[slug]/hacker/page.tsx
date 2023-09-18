@@ -1,6 +1,6 @@
 import type { Database } from "@/models/db.supabase";
 import { Post } from "@/models/posts";
-import { BlogPostHeader } from "@/ui/atoms";
+import { BlogPostHeader, FormattedText } from "@/ui/atoms";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -20,9 +20,7 @@ export default async function BlogEntryPage({
   return (
     <article className="grid gap-12">
       <BlogPostHeader post={post} mode="dev" />
-      <pre className="whitespace-pre-wrap break-all">
-        {JSON.stringify(post, null, 2)}
-      </pre>
+      <FormattedText>{JSON.stringify(post, null, 2)}</FormattedText>
     </article>
   );
 }

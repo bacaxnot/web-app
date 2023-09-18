@@ -6,3 +6,4 @@ export { default as BlogPostHeader } from "./blog-post-header";
 export { default as BlogPostMeta } from "./blog-post-meta";
 export { default as BlogPostBody } from "./blog-post-body";
 export { default as Disclaimer } from "./disclaimer";
+export { default as FormattedText } from "./formatted-text";
