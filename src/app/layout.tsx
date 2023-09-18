@@ -24,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={classNames}>
-        <Navbar className="px-page w-page justify-self-center" />
-        <main className="px-page w-page justify-self-center">{children}</main>
+        <Navbar className="w-page justify-self-center px-page" />
+        <main className="w-page justify-self-center px-page py-8">
+          {children}
+        </main>
       </body>
     </html>
   );
