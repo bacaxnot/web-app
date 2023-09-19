@@ -8,7 +8,7 @@ const WorkInProgress: CustomFC<"p"> = ({ className, ...props }) => {
   );
   return (
     <p {...props} className={classes}>
-      <span>Work in</span>
+      <span>work in</span>
       <span className="blinking">progress</span>
     </p>
   );
