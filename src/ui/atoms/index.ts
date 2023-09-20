@@ -7,3 +7,4 @@ export { default as BlogPostMeta } from "./blog-post-meta";
 export { default as BlogPostBody } from "./blog-post-body";
 export { default as Disclaimer } from "./disclaimer";
 export { default as FormattedText } from "./formatted-text";
+export { default as PublishPostBtn } from "./publish-post-btn";

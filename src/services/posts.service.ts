@@ -1,22 +1,94 @@
-import { Post } from "@/models/api.posts";
 import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { textToSpeech } from "./elevenlabs.service";
 import { ErrorOrData } from "@/types";
 import { saveAudioPost } from "./audio-posts.service";
 import { Database } from "@/models/db.supabase";
+import {
+  Post,
+  PostCreationFields,
+  PostCreationReqFields,
+} from "@/models/posts";
+import { generateImageFromText } from "./dall-e.service";
+import { sluggify } from "@/lib/utils";
 
-export async function createPost({
+export async function getPostBySlug({
   client,
-  post,
+  slug,
 }: {
   client: SupabaseClient<Database>;
-  post: Post;
-}): Promise<ErrorOrData<Required<Post>>> {
-  let result: ErrorOrData<Required<Post>> = {
+  slug: string;
+}): Promise<ErrorOrData<Post>> {
+  let result: ErrorOrData<Post> = {
     error: { message: "" },
     data: null,
   };
 
+  const { data: post, error: postError } = await client
+    .from("posts")
+    .select("*, user:users(*), role:roles(name)")
+    .eq("slug", slug)
+    .single();
+
+  if (postError) {
+    result = { error: { message: postError.message }, data: null };
+    return result;
+  }
+  return (result = { data: post, error: null });
+}
+
+export async function checkPostAvailability({
+  client,
+  slug,
+}: {
+  client: SupabaseClient<Database>;
+  slug: string;
+}) {
+  let result: ErrorOrData<Omit<Post, "user">> = {
+    error: { message: "" },
+    data: null,
+  };
+
+  const { data: postExists, error: postExistsError } = await client
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (postExistsError) {
+    result.error = { message: postExistsError.message };
+    return result;
+  }
+  result = { data: postExists, error: null };
+  return result;
+}
+
+export async function createPost({
+  client,
+  payload,
+}: {
+  client: SupabaseClient<Database>;
+  payload: PostCreationFields;
+}): Promise<ErrorOrData<PostCreationReqFields>> {
+  let result: ErrorOrData<PostCreationReqFields> = {
+    error: { message: "" },
+    data: null,
+  };
+
+  console.log("creating post slug...\n");
+  const slug = sluggify(payload.title);
+  const post = { ...payload, slug };
+
+  console.log("checking if post exists...");
+  const { data: postExists } = await checkPostAvailability({
+    client,
+    slug,
+  });
+  if (postExists) {
+    result.error = { message: "post with that slug or title already exists" };
+    return result;
+  }
+
+  console.log("generating audio...\n");
   const { data: audio, error: audioError } = await textToSpeech({
     text: post.content,
   });
@@ -25,16 +97,26 @@ export async function createPost({
     return result;
   }
 
-  const { data: storageData, error: storageError } = await saveAudioPost({
-    client,
-    fileName: `${post.slug}.mp3`,
-    audio,
-  });
-  if (storageError) {
-    result.error = { message: storageError.message };
+  console.log("saving audio...\n");
+  const { data: audioStorageData, error: audioStorageError } =
+    await saveAudioPost({
+      client,
+      fileName: `${post.slug}.mp3`,
+      audio,
+    });
+  if (audioStorageError) {
+    result.error = { message: audioStorageError.message };
     return result;
   }
+  console.log("generating image...\n");
+  const { data: imageGen, error: imageGenError } = await generateImageFromText({
+    content: post.content,
+  });
+  if (imageGenError) {
+    console.log("error generating image", imageGenError);
+  }
 
+  console.log("getting user...\n");
   const { data: userData, error: userError } = await client.auth.getUser();
   if (userError) {
     result.error = { message: userError.message };
@@ -43,10 +125,12 @@ export async function createPost({
 
   const postData = {
     ...post,
-    audio_url: storageData.url,
+    audio_url: audioStorageData.url,
+    image_url: imageGen?.url ?? "/error-post-image.webp",
     user_id: userData.user.id,
   };
 
+  console.log("inserting post...\n");
   const { error: postError } = await client.from("posts").insert(postData);
   if (postError) {
     result.error = { message: postError.message };
@@ -54,5 +138,6 @@ export async function createPost({
   }
 
   result = { data: postData, error: null };
+  console.log("done", result);
   return result;
 }

@@ -11,31 +11,34 @@ export interface Database {
     Tables: {
       posts: {
         Row: {
-          audio_url: string | null
+          audio_url: string
           content: string
           created_at: string
           edited_at: string
           id: string
+          image_url: string
           slug: string
           title: string
           user_id: string
         }
         Insert: {
-          audio_url?: string | null
+          audio_url: string
           content?: string
           created_at?: string
           edited_at?: string
           id?: string
+          image_url: string
           slug: string
           title?: string
           user_id: string
         }
         Update: {
-          audio_url?: string | null
+          audio_url?: string
           content?: string
           created_at?: string
           edited_at?: string
           id?: string
+          image_url?: string
           slug?: string
           title?: string
           user_id?: string
