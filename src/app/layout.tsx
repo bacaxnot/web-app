@@ -7,8 +7,8 @@ import { Navbar } from "@/ui/organisms";
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bacaxnot",
-  description: "Supongo que esta es mi pagina web",
+  title: "bacaxnot",
+  description: "supongo que esta es mi pagina web",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const classNames = cn(
-    "grid bg-black text-white [color-scheme:dark]",
+    "grid min-h-[100dvh] grid-rows-[auto,1fr] bg-black text-white [color-scheme:dark]",
     robotoMono.className,
   );
 

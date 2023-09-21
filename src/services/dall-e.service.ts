@@ -8,8 +8,8 @@ export async function generateImageFromText({
   content,
 }: {
   content: string;
-}): Promise<ErrorOrData<{ url: string }>> {
-  let result: ErrorOrData<{ url: string }> = {
+}): Promise<ErrorOrData<{ buffer: Buffer }>> {
+  let result: ErrorOrData<{ buffer: Buffer }> = {
     error: { message: "" },
     data: null,
   };
@@ -21,14 +21,16 @@ export async function generateImageFromText({
       prompt: prompt,
       n: 1,
       size: "1024x1024",
-      response_format: "url",
+      response_format: "b64_json",
     });
 
-    if (response.data[0].url === undefined)
+    if (response.data[0].b64_json === undefined)
       throw new Error("No image generated");
 
-    const { url } = response.data[0];
-    result = { error: null, data: { url } };
+    const { b64_json } = response.data[0];
+    const buffer = Buffer.from(b64_json, "base64");
+
+    result = { error: null, data: { buffer } };
   } catch (e) {
     result = {
       error: { message: `Error generating image from DallE: ${e}` },

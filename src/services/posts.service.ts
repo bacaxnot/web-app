@@ -1,7 +1,7 @@
 import { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { textToSpeech } from "./elevenlabs.service";
 import { ErrorOrData } from "@/types";
-import { saveAudioPost } from "./audio-posts.service";
+import { saveAudio, saveImage } from "./storage.service";
 import { Database } from "@/models/db.supabase";
 import {
   Post,
@@ -98,22 +98,34 @@ export async function createPost({
   }
 
   console.log("saving audio...\n");
-  const { data: audioStorageData, error: audioStorageError } =
-    await saveAudioPost({
-      client,
-      fileName: `${post.slug}.mp3`,
-      audio,
-    });
+  const { data: audioStorageData, error: audioStorageError } = await saveAudio({
+    client,
+    fileName: `posts/${post.slug}.mp3`,
+    audio,
+  });
   if (audioStorageError) {
     result.error = { message: audioStorageError.message };
     return result;
   }
+
   console.log("generating image...\n");
   const { data: imageGen, error: imageGenError } = await generateImageFromText({
     content: post.content,
   });
   if (imageGenError) {
-    console.log("error generating image", imageGenError);
+    result.error = { message: imageGenError.message };
+    return result;
+  }
+
+  console.log("saving image...\n");
+  const { data: imageStorageData, error: imageStorageError } = await saveImage({
+    client,
+    fileName: `posts/${post.slug}.png`,
+    image: imageGen.buffer,
+  });
+  if (imageStorageError) {
+    result.error = { message: imageStorageError.message };
+    return result;
   }
 
   console.log("getting user...\n");
@@ -126,7 +138,7 @@ export async function createPost({
   const postData = {
     ...post,
     audio_url: audioStorageData.url,
-    image_url: imageGen?.url ?? "/error-post-image.webp",
+    image_url: imageStorageData.url,
     user_id: userData.user.id,
   };
 

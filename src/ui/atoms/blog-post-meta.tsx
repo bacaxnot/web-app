@@ -4,7 +4,7 @@ import React from "react";
 
 const BlogPostMeta = ({ post }: { post: Post }) => {
   const { created_at, user } = post;
-  const { name, username } = user;
+  const username = user?.username || "anonimo";
 
   return (
     <section className="flex justify-between gap-2 text-sm">

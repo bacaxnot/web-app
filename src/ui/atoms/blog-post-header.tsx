@@ -23,9 +23,9 @@ const BlogPostHeader = ({
   };
 
   return (
-    <section className="grid gap-4">
+    <section className="grid gap-1">
       <section className="flex items-start justify-between gap-2">
-        <h1 className="underline">{title}</h1>
+        <h1>{title}</h1>
         <Link className="px-1" href={modeSwitcher[mode].link}>
           {modeSwitcher[mode].icon}
         </Link>

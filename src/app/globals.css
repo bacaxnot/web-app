@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  display: grid;
-  height: 100dvh;
-  grid-template-rows: auto 1fr;
-}
-
 .blinking {
   display: flex;
   align-items: center;
