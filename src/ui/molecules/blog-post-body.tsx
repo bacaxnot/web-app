@@ -1,5 +1,6 @@
 import { Post } from "@/models/posts";
-import { BlogPostContent, Disclaimer } from ".";
+import { Disclaimer } from "../atoms";
+import BlogPostContent from "./blog-post-content";
 import Image from "next/image";
 
 async function BlogPostBody({

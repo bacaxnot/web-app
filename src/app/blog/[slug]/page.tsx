@@ -1,7 +1,6 @@
-import { createBlurImage } from "@/lib/utils";
 import type { Database } from "@/models/db.supabase";
 import { Post } from "@/models/posts";
-import { BlogPostHeader, BlogPostBody } from "@/ui/atoms";
+import { BlogPostHeader, BlogPostBody } from "@/ui/molecules";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
