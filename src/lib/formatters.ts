@@ -14,3 +14,19 @@ export function dateFormatter(date: string) {
   const year = dateObj.getFullYear();
   return `${day}/${month}/${year}`;
 }
+
+/**
+ * Extracts the first 200 characters of a string and returns it.
+ * @param content - String to be excerpted.
+ * @returns - Excerpted string.
+ * @example
+ * ```
+ * const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis aliquet nisl nunc quis nisl. Donec euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis aliquet nisl nunc quis nisl.';
+ * const excerpt = contentExcerpt(content);
+ * console.log(excerpt); // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis aliquet nisl nunc quis nisl. Donec euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis aliquet nisl nunc quis nisl.
+ * ```
+ */
+export function contentExcerpt(content: string) {
+  const excerpt = content.slice(0, 180);
+  return excerpt;
+}
