@@ -1,6 +1,7 @@
 import type { Database } from "@/models/db.supabase";
 import { Post } from "@/models/posts";
-import { BlogPostHeader, FormattedText } from "@/ui/atoms";
+import { FormattedText } from "@/ui/atoms";
+import { BlogPostHeader } from "@/ui/molecules";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 

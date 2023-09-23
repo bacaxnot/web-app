@@ -13,8 +13,9 @@ export default async function BlogHomePage() {
   return (
     <section className="z-0 grid gap-6 @container">
       <Disclaimer>
-        este blog solo pretende exponer pensamientos aleatorios que tengo sobre
-        diversos temas, lo hago por y para mi, so warever.
+        este blog solo pretende compartir ideas que tengo mientras exploro este
+        maravilloso misterio llamado existencia. si te gusta, genial; si no,
+        también. besos cibernéticos para tod@s.
       </Disclaimer>
       <ul className="grid gap-x-8 gap-y-16 @2xl:grid-cols-2">
         {posts?.map((post, index) =>

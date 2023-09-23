@@ -9,7 +9,7 @@ const WorkInProgress: CustomFC<"p"> = ({ className, ...props }) => {
   return (
     <p {...props} className={classes}>
       <span>work in</span>
-      <span className="blinking">progress</span>
+      <span className="with-caret blinking">progress</span>
     </p>
   );
 };

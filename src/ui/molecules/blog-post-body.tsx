@@ -13,7 +13,7 @@ async function BlogPostBody({
   const { audio_url, content, image_url, title } = post;
 
   return (
-    <section className="grid gap-6">
+    <section className="grid gap-12">
       <section className="grid gap-2 @container">
         <div className="relative h-60 @md:h-[32rem]">
           <Image
@@ -27,9 +27,11 @@ async function BlogPostBody({
         </div>
         <audio controls src={audio_url} className="w-full" />
         <Disclaimer>
-          este audio con mi voz suena como mi voz, parece mi voz, sabe a mi voz,
-          pero no es mi voz. Es un modelo de inteligencia artificial que utilizo
-          como esclavo personal para que lea mis posts.
+          este audio suena como mi voz, pero no lo es. es un modelo de
+          inteligencia artificial que utilizo como esclavo personal para que lea
+          mis posts. la imagen de arriba también está generada con i.a.
+          automáticamente en función del contenido del post. así que si está
+          rara, culpen a la i.a.
         </Disclaimer>
       </section>
       <section>

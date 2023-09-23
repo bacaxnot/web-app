@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        "with-caret": "1.2em",
+      },
       width: {
         page: "min(100%,56rem);",
       },
