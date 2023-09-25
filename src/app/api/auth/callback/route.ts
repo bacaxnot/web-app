@@ -12,6 +12,5 @@ export async function GET(req: Request) {
     const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
   }
-  console.log("auth redirect to: ", `${reqUrl.origin}/admin`);
   return NextResponse.redirect(`${reqUrl.origin}/admin`, { status: 301 });
 }
