@@ -25,7 +25,13 @@ const BlogPostCard = ({
           href={href}
           className="relative block h-[200px] w-full @3xl/:h-[260px]"
         >
-          <Image src={image_url} fill alt={title} className="object-cover" />
+          <Image
+            src={image_url}
+            fill
+            sizes="(min-width: 960px) 416px, (min-width: 720px) calc(40vw + 40px), calc(100vw - 32px)"
+            alt={title}
+            className="object-cover"
+          />
         </Link>
         <section className="flex flex-col items-start justify-between gap-3">
           <Link href={href}>

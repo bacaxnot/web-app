@@ -28,6 +28,7 @@ export default async function QuienHomePage() {
             <Image
               src={avatarURL}
               fill
+              sizes="300px"
               alt="bacaxnot"
               className="object-contain"
             />
