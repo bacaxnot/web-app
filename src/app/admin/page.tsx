@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { PostCreationForm } from "@/ui/templates";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const supabase = createServerComponentClient({ cookies });
   const {

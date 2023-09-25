@@ -4,6 +4,8 @@ import { BlogPostCard } from "@/ui/organisms";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export default async function BlogHomePage() {
   const supabase = createServerComponentClient<Database>({ cookies });
   const { data: posts } = await supabase
@@ -32,4 +34,16 @@ export default async function BlogHomePage() {
       </ul>
     </section>
   );
+}
+
+export async function generateStaticParams() {
+  const supabase = createServerComponentClient<Database>({ cookies });
+  const { data: posts } = await supabase
+    .from("posts")
+    .select("*, user:users(*)");
+  if (!posts) return [];
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
