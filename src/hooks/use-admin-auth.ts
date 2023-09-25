@@ -7,7 +7,7 @@ export default function useAdminAuth() {
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: "http://localhost:3000/api/auth/callback",
+        redirectTo: `${location.origin}/api/auth/callback`,
       },
     });
   };
