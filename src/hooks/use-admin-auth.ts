@@ -3,15 +3,11 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 export default function useAdminAuth() {
   const supabase = createClientComponentClient();
 
-  console.log(
-    "using admint auth to redirect to:",
-    `${location.origin}/api/auth/callback`,
-  );
   const authorize = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${location.origin}/api/auth/callback`,
+        redirectTo: `${window.location.origin}/api/auth/callback`,
       },
     });
   };
