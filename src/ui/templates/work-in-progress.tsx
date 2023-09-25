@@ -1,7 +1,9 @@
-import { CustomFC, cn } from "@bacaxnot/utils";
+import { AllHTMLProps, cn } from "@bacaxnot/utils";
 import React from "react";
 
-const WorkInProgress: CustomFC<"p"> = ({ className, ...props }) => {
+type Props = AllHTMLProps<"p">;
+
+const WorkInProgress = ({ className, ...props }: Props) => {
   const classes = cn(
     "flex flex-col items-center justify-center break-words text-6xl",
     className,

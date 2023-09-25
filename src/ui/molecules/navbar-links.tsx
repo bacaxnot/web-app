@@ -1,9 +1,11 @@
 "use client";
 
 import { FEATURES, ROUTES } from "@/config";
-import { CustomFC, cn } from "@bacaxnot/utils";
+import { AllHTMLProps, cn } from "@bacaxnot/utils";
 import { NavbarLink, BurgerToggle } from "../atoms";
 import { useState } from "react";
+
+type Props = AllHTMLProps<"ul">;
 
 const links = [
   { href: ROUTES.blog.root, text: "blog", flag: FEATURES.blog },
@@ -11,7 +13,7 @@ const links = [
   { href: ROUTES.quien.root, text: "quién", flag: FEATURES.quien },
 ];
 
-const NavbarLinkList: CustomFC<"ul"> = ({ children, ...props }) => {
+const NavbarLinkList = ({ children, ...props }: Props) => {
   const validLinks = links.filter((feature) => feature.flag);
   return (
     <ul {...props}>
@@ -43,7 +45,7 @@ const NavbarLinks = () => {
       <NavbarLinkList className={linkListStyles.desktop} />
       <NavbarLinkList
         className={cn(linkListStyles.mobile, {
-          "shadow-bottom translate-y-0 shadow-white": isOpen,
+          "translate-y-0 shadow-bottom shadow-white": isOpen,
         })}
       />
     </>

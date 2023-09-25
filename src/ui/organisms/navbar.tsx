@@ -1,8 +1,10 @@
-import { CustomFC, cn } from "@bacaxnot/utils";
+import { AllHTMLProps, cn } from "@bacaxnot/utils";
 import { NavbarLogo } from "../atoms";
 import { NavbarLinks } from "../molecules";
 
-const Navbar: CustomFC<"header"> = ({ className, ...props }) => {
+type Props = AllHTMLProps<"header">;
+
+const Navbar = ({ className, ...props }: Props) => {
   const classes = cn(
     "navbar sticky top-0 z-50 grid bg-black bg-clip-border py-2 @container/navbar",
     className,

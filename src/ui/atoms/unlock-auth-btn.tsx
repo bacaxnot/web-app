@@ -1,9 +1,11 @@
 "use client";
 
 import { useAdminAuth } from "@/hooks";
-import { CustomFC, cn } from "@bacaxnot/utils";
+import { AllHTMLProps, cn } from "@bacaxnot/utils";
 
-const UnlockAuthBtn: CustomFC<"button"> = ({ ...props }) => {
+type Props = AllHTMLProps<"button">;
+
+const UnlockAuthBtn = ({ ...props }: Props) => {
   const { authorize } = useAdminAuth();
 
   const classes = cn(

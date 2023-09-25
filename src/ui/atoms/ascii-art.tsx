@@ -1,14 +1,14 @@
 import { ASCII_LOCK_BIN } from "@/lib/ascii-art";
-import { CustomFC, cn } from "@bacaxnot/utils";
+import { AllHTMLProps, cn } from "@bacaxnot/utils";
 
 const Designs = {
   lock: ASCII_LOCK_BIN,
 };
-interface Props {
+interface Props extends AllHTMLProps<"section"> {
   design: keyof typeof Designs;
 }
 
-const AciiArt: CustomFC<"section", Props> = ({ design, ...props }) => {
+const AciiArt = ({ design, ...props }: Props) => {
   const artDesign = Designs[design].map((line, index) => {
     return <pre key={index}>{line}</pre>;
   });
